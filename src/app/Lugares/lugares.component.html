@@ -10,7 +10,7 @@
       <h2>Lugares Cercanos</h2>
       <ul class="list-group">
         <ng-container *ngFor="let lugar of lugares">
-        <a routerLink="/detalle//{{ lugar.id }}"><li class="list-group-item" *ngIf="lugar.active">{{ lugar.nombre }}</li></a>
+        <a routerLink="/detalle//{{ lugar.id }}" [queryParams]="{action2:'edit', referer:'google'}"><li class="list-group-item" *ngIf="lugar.active">{{ lugar.nombre }}</li></a>
         </ng-container>
       </ul>
     </div>
