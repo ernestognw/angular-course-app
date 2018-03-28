@@ -8,11 +8,11 @@
   <div class="row">
     <div class="col-md-8">
       <h2>Lugares Cercanos
-      <a routerLink="/crear" class="btn btn-info float-right">Crear nuevo negocio</a>
+      <a routerLink="/crear" class="btn btn-info float-right">Crear <b>+</b></a>
       </h2>
       <ul class="list-group">
         <ng-container *ngFor="let lugar of lugares">
-        <a routerLink="/detalle//{{ lugar.id }}" [queryParams]="{action2:'edit', referer:'google'}"><li class="list-group-item" *ngIf="lugar.active">{{ lugar.nombre }}</li></a>
+        <a routerLink="/detalle/{{ lugar.id }}" [queryParams]="{action2:'edit', referer:'google'}"><li class="list-group-item" >{{ lugar.nombre }}</li></a>
         </ng-container>
       </ul>
     </div>

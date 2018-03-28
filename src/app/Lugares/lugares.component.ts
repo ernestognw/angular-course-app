@@ -13,7 +13,11 @@ export class LugaresComponent {
 	lugares = null;
 
 	constructor(private lugaresService: LugaresService){
-		this.lugares = lugaresService.getLugares();
+		lugaresService.getLugares()
+			.valueChanges().subscribe( lugares => {
+				console.log(lugares);
+				this.lugares = lugares;
+			});
 	}
 
 }
