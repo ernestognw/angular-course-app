@@ -16,7 +16,9 @@ import { ContactoComponent } from './contacto/contacto.component';
 const appRoutes: Routes = [
 	{path:'', component: LugaresComponent},
 	{path:'lugares', component: LugaresComponent},
-	{path:'detalle/:id', component: DetalleComponent}
+	{path:'detalle/:id', component: DetalleComponent},
+  {path:'contacto', component: ContactoComponent},
+
 ];
 
 @NgModule({
