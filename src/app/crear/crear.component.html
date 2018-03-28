@@ -1,0 +1,41 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/lugares">Lugares</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Crear Lugar</li>
+  </ol>
+</nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-6"></div>
+		<div class="col-md-6">
+
+			<div class="card border-info mb-3">
+			  <div class="card-header">Registra un nuevo negocio</div>
+			  <div class="card-body text-info">
+			    <h5 class="card-title">Nombre</h5>
+				<input type="text" class="form-control" [(ngModel)]="lugar.nombre">
+				<hr />
+				<h5 class="card-title">Distancia</h5>
+				<input type="number" class="form-control" [(ngModel)]="lugar.distancia">
+				<hr />
+				<h5 class="card-title">Cercanía</h5>
+				<input type="text" class="form-control" [(ngModel)]="lugar.cercania">
+				<hr />
+				<h5 class="card-title">Descripción</h5>
+				<textarea class="form-control" [(ngModel)]="lugar.descripcion"></textarea>
+				<hr />
+				<h5 class="card-title">Plan</h5>
+				<input type="text" class="form-control" [(ngModel)]="lugar.plan">
+				<hr />
+				<div class="row justify-content-end">
+					<button type="button" class="btn btn-info" (click)="guardarLugar()">Enviar</button>
+					<button type="button" class="btn btn-light" routerLink="/lugares">Cancelar</button>
+				</div>
+			  </div>
+			</div>
+
+		</div>
+	</div>
+</div>
+

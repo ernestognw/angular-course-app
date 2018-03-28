@@ -4,6 +4,14 @@ agm-map {
 	height: 300px;
 }
 
+footer, nav {
+	background-color: #1c3643;
+}
+
+footer {
+	margin-top: 50px;
+}
+
 .numero_par{
 	background: aliceblue;
 	color: blue;
