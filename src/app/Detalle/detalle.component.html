@@ -12,10 +12,13 @@
 
 	<div class="card mb-3">
 	  <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+	  <agm-map [latitude]="lugar.lat" [longitude]="lugar.lng">
+	  	<agm-marker [latitude]="lugar.lat" [longitude]="lugar.lng"></agm-marker>
+	  </agm-map>
 	  <div class="card-body">
-	    <p class="card-text"><small class="text-muted">{{ lugar.distancia }} km  -  <b>Plan: {{ lugar.plan }}</b></small></p>
-	    <hr />
 	    <p class="card-text">{{ lugar.descripcion }}</p>
+	    <hr>
+	    <p class="card-text"><small class="text-muted">{{ lugar.distancia }} km  -  <b>Plan: {{ lugar.plan }}</b></small></p>
 	  </div>
 	</div>
 

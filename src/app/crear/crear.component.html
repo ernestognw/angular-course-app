@@ -11,22 +11,35 @@
 		<div class="col-md-6">
 
 			<div class="card border-info mb-3">
-			  <div class="card-header">Registra un nuevo negocio</div>
+			  <div class="card-header"><h4>Registra un nuevo negocio</h4></div>
 			  <div class="card-body text-info">
-			    <h5 class="card-title">Nombre</h5>
+			  	<h5>Datos Generales</h5>
+			  	<hr />
+			    <strong class="card-title">Nombre</strong>
 				<input type="text" class="form-control" [(ngModel)]="lugar.nombre">
 				<hr />
-				<h5 class="card-title">Distancia</h5>
+				<strong class="card-title">Distancia</strong>
 				<input type="number" class="form-control" [(ngModel)]="lugar.distancia">
 				<hr />
-				<h5 class="card-title">Cercanía</h5>
+				<strong class="card-title">Cercanía</strong>
 				<input type="text" class="form-control" [(ngModel)]="lugar.cercania">
 				<hr />
-				<h5 class="card-title">Descripción</h5>
+				<strong class="card-title">Descripción</strong>
 				<textarea class="form-control" [(ngModel)]="lugar.descripcion"></textarea>
 				<hr />
-				<h5 class="card-title">Plan</h5>
+				<strong class="card-title">Plan</strong>
 				<input type="text" class="form-control" [(ngModel)]="lugar.plan">
+				<hr />
+				<h5>Datos de Ubicación</h5>
+				<hr />
+				<strong class="card-title">Calle y número</strong>
+				<input type="text" class="form-control" [(ngModel)]="lugar.calle">
+				<hr />
+				<strong class="card-title">Ciudad</strong>
+				<input type="text" class="form-control" [(ngModel)]="lugar.ciudad">
+				<hr />
+				<strong class="card-title">País</strong>
+				<input type="text" class="form-control" [(ngModel)]="lugar.pais">
 				<hr />
 				<div class="row justify-content-end">
 					<button type="button" class="btn btn-info" (click)="guardarLugar()">Enviar</button>

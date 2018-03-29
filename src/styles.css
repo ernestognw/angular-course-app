@@ -12,8 +12,20 @@ footer {
 	margin-top: 50px;
 }
 
+h3.lugar-list {
+	font-size: 20px;
+	margin: 0px;
+}
+
+.card > agm-map{
+	height: 200px;
+}
+
 .numero_par{
 	background: aliceblue;
 	color: blue;
 }
 
+.oi {
+	font-size: 12px;
+}
