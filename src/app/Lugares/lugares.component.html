@@ -8,11 +8,11 @@
   <div class="row">
     <div class="col-md-8">
       <h2>Lugares Cercanos
-      <a routerLink="/crear/new" class="btn btn-info float-right">Crear <span class="oi oi-plus" title="plus" aria-hidden="true"></span></a>
+      <a routerLink="/crear/new" class="btn btn-info float-right btn-sm">Crear <span class="oi oi-plus" title="plus" aria-hidden="true"></span></a>
       </h2>
-      <ul class="list-group">
+
         <ng-container *ngFor="let lugar of lugares">
-          <a routerLink="/detalle/{{ lugar.id }}">
+          <!-- <a routerLink="/detalle/{{ lugar.id }}">
             <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action" >
               <h3 class="lugar-list">{{ lugar.nombre }}
                 <br>
@@ -23,12 +23,48 @@
                   <span class="oi oi-pencil"></span>
               </a>
             </li>
-          </a>
+          </a> -->
+
+          <div class="card border-primary mb-3">
+            <div class="card-body">
+              <a routerLink="/detalle/{{ lugar.id }}"><h3 class="text-primary mb-0">{{ lugar.nombre }}</h3></a>
+              <small class="text-muted">{{ lugar.id | date }}</small>
+              <p [innerHtml]="lugar.descripcion | linkifystr" class="mt-2"></p>
+              <hr>
+              <a class="btn btn-outline-primary btn-sm" routerLink="/crear/{{ lugar.id }}">
+                <span class="oi oi-pencil"></span>
+              </a>
+            </div>
+          </div>
+
         </ng-container>
-      </ul>
+
     </div>
     <div class="col-md-4">
       <h2>Destacados</h2>
+
+      <div [@contenedorAnimable]="state">
+
+        <ng-container *ngFor="let lugar of lugares">
+
+          <div class="card border-info mb-3" *ngIf="lugar.plan == 'pagado'">
+            <div class="card-body">
+              <a routerLink="/detalle/{{ lugar.id }}"><h3 class="text-info mb-0">{{ lugar.nombre }}</h3></a>
+              <small class="text-muted">{{ lugar.id | date }}</small>
+              <p [innerHtml]="lugar.descripcion | linkifystr" class="mt-2"></p>
+              <hr>
+              <a class="btn btn-outline-info btn-sm" routerLink="/crear/{{ lugar.id }}">
+                <span class="oi oi-pencil"></span>
+              </a>
+            </div>
+          </div>
+
+        </ng-container>
+
+      </div>
+
+<!--       <div id="cuadrado" [@contenedorAnimable]="state" (@contenedorAnimable.start)="animacionInicia($event)" (@contenedorAnimable.done)="animacionTermina($event)"></div>
+      <button class="btn btn-outline-info" (click)="animar()">Animar</button> -->
     </div>
   </div>
 </div>

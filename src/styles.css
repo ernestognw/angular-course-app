@@ -17,6 +17,12 @@ h3.lugar-list {
 	margin: 0px;
 }
 
+#cuadrado {
+	width: 200px;
+	height: 200px;
+	background-color: red;
+}
+
 .card > agm-map{
 	height: 200px;
 }
