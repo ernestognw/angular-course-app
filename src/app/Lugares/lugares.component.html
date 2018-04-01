@@ -14,7 +14,11 @@
         <ng-container *ngFor="let lugar of lugares">
           <a routerLink="/detalle/{{ lugar.id }}">
             <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action" >
-              <h3 class="lugar-list">{{ lugar.nombre }}</h3>
+              <h3 class="lugar-list">{{ lugar.nombre }}
+                <br>
+                <small>Creado: {{ lugar.id | date }}</small>
+                <p [innerHtml]="lugar.descripcion | linkifystr"></p>
+              </h3>
               <a class="btn btn-outline-info" routerLink="/crear/{{ lugar.id }}">
                   <span class="oi oi-pencil"></span>
               </a>

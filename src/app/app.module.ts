@@ -18,6 +18,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CrearComponent } from './crear/crear.component';
 import { HttpModule } from '@angular/http';
 import { CollapseModule } from 'ngx-bootstrap';
+import { LinkifystrPipe } from './pipes/linkifystr.pipe'; 
 
 const appRoutes: Routes = [
 	{path:'', component: LugaresComponent},
@@ -44,7 +45,8 @@ export const firebaseConfig = {
     	DetalleComponent,
     	LugaresComponent,
     	ContactoComponent,
-    	CrearComponent
+    	CrearComponent,
+      LinkifystrPipe,
   ],
   imports: [
     BrowserModule,
