@@ -19,16 +19,29 @@
 				<input type="text" class="form-control" [(ngModel)]="lugar.nombre">
 				<hr />
 				<strong class="card-title">Distancia</strong>
-				<input type="number" class="form-control" [(ngModel)]="lugar.distancia">
+				<div class="input-group mb-3">
+					<input type="number" class="form-control" [(ngModel)]="lugar.distancia">
+					<div class="input-group-append">
+					  <span class="input-group-text">kms</span>
+					</div>
+				</div>
 				<hr />
 				<strong class="card-title">Cercanía</strong>
-				<input type="text" class="form-control" [(ngModel)]="lugar.cercania">
+				<select class="custom-select" id="inputGroupSelect01" [(ngModel)]="lugar.cercania">
+				  <option selected>Seleccionar</option>
+				  <option value="1">Cerca</option>
+				  <option value="2">Lejos</option>
+				  <option value="3">Muy lejos</option>
+				</select>
 				<hr />
 				<strong class="card-title">Descripción</strong>
 				<textarea class="form-control" [(ngModel)]="lugar.descripcion"></textarea>
 				<hr />
 				<strong class="card-title">Plan</strong>
-				<input type="text" class="form-control" [(ngModel)]="lugar.plan">
+				<select class="custom-select" id="inputGroupSelect01" [(ngModel)]="lugar.plan">
+				  <option value="pagado">Pagado</option>
+				  <option value="gratuito">Gratuito</option>
+				</select>
 				<hr />
 				<h5>Datos de Ubicación</h5>
 				<hr />
