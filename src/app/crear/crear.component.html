@@ -48,11 +48,13 @@
 				<strong class="card-title">Calle y número</strong>
 				<input type="text" class="form-control" [(ngModel)]="lugar.calle">
 				<hr />
+				<strong class="card-title">País</strong>
+				<select class="custom-select" id="inputGroupSelect01" [(ngModel)]="lugar.pais">
+				  <option value="{{ ubicacion.country }}" *ngFor="let ubicacion of ubicaciones.countries">{{ ubicacion.country }}</option>
+				</select>
+				<hr />
 				<strong class="card-title">Ciudad</strong>
 				<input type="text" class="form-control" [(ngModel)]="lugar.ciudad">
-				<hr />
-				<strong class="card-title">País</strong>
-				<input type="text" class="form-control" [(ngModel)]="lugar.pais">
 				<hr />
 				<div class="row justify-content-end">
 					<button type="button" class="btn btn-info" (click)="guardarLugar()">Enviar</button>

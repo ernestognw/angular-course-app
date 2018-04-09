@@ -16,6 +16,7 @@ export class LugaresService{
 	{id: 7, plan: 'gratuito', cercania: 3, distancia: 120, active: 1, nombre: 'Hamburguesas Chester', descripcion: 'Agregaremos una descripción pronto'},
 	{id: 8, plan: 'gratuito', cercania: 3, distancia: 120, active: 1, nombre: 'Nails Room Durango', descripcion: 'Agregaremos una descripción pronto'},
 	];
+
 	constructor(private afDB:AngularFireDatabase, private http: Http){}
 	public getLugares(){
 		return this.afDB.list('lugares/');
