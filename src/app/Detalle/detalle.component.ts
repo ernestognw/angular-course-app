@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LugaresService } from '../services/lugares.service';
 
- 
+
 @Component({
   selector: 'app-detalle',
   templateUrl: './detalle.component.html'
