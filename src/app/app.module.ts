@@ -18,51 +18,59 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CrearComponent } from './crear/crear.component';
 import { HttpModule } from '@angular/http';
 import { CollapseModule } from 'ngx-bootstrap';
-import { LinkifystrPipe } from './pipes/linkifystr.pipe'; 
+import { LinkifystrPipe } from './pipes/linkifystr.pipe';
+import { LoginComponent } from './login/login.component';
+import { RegistroComponent } from './registro/registro.component';
+import { AutorizacionService } from './services/autorizacion.service';
+import { MyGuardService } from './services/my-guard.service';
 
 const appRoutes: Routes = [
-	{path:'', component: LugaresComponent},
-	{path:'lugares', component: LugaresComponent},
-	{path:'detalle/:id', component: DetalleComponent},
-  {path:'contacto', component: ContactoComponent},
-  {path:'crear/:id', component: CrearComponent},
+  {path: '', component: LugaresComponent},
+  {path: 'lugares', component: LugaresComponent},
+  {path: 'detalle/:id', component: DetalleComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'contacto', component: ContactoComponent},
+  {path: 'registro', component: RegistroComponent},
+  {path: 'crear/:id', component: CrearComponent, canActivate: [MyGuardService]},
 
 ];
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyACqjCteQZPxGM8DJ0c20iU_bClPvVD-lA",
-  authDomain: "platzisquare-1521846284672.firebaseapp.com",
-  databaseURL: "https://platzisquare-1521846284672.firebaseio.com",
-  storageBucket: "platzisquare-1521846284672.appspot.com",
-  messagingSenderId: "405701826257"
+  apiKey: 'AIzaSyACqjCteQZPxGM8DJ0c20iU_bClPvVD-lA',
+  authDomain: 'platzisquare-1521846284672.firebaseapp.com',
+  databaseURL: 'https://platzisquare-1521846284672.firebaseio.com',
+  storageBucket: 'platzisquare-1521846284672.appspot.com',
+  messagingSenderId: '405701826257'
 };
 
 @NgModule({
   declarations: [
     AppComponent,
-    	AppResaltarDirective,
-    	AppContarClicksDirective,
-    	DetalleComponent,
-    	LugaresComponent,
-    	ContactoComponent,
-    	CrearComponent,
+      AppResaltarDirective,
+      AppContarClicksDirective,
+      DetalleComponent,
+      LugaresComponent,
+      ContactoComponent,
+      CrearComponent,
       LinkifystrPipe,
+      LoginComponent,
+      RegistroComponent,
   ],
   imports: [
     BrowserModule,
-    	FormsModule,
-   	AgmCoreModule.forRoot({
+      FormsModule,
+    AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCn0eygIajJOozSgy6ij5I7p4Zi4fkxrek'
     }),
     BrowserAnimationsModule,
-    	RouterModule.forRoot(appRoutes),
+      RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     HttpModule,
     CollapseModule.forRoot(),
   ],
-  providers: [LugaresService],
+  providers: [LugaresService, AutorizacionService, MyGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
