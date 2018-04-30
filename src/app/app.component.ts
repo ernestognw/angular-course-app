@@ -9,16 +9,21 @@ import { AutorizacionService } from './services/autorizacion.service';
 export class AppComponent {
   isCollapsed = false;
   loggedIn = false;
+  currentUser = null;
   constructor(private autorizacionService: AutorizacionService) {
     this.autorizacionService.isLogged()
       .subscribe((result) => {
         if (result && result.uid) {
           this.loggedIn = true;
+          this.currentUser = autorizacionService.getUserData();
         } else {
           this.loggedIn = false;
         }
       }, (error) => {
         this.loggedIn = false;
       });
+  }
+  logout() {
+    this.autorizacionService.logout();
   }
 }

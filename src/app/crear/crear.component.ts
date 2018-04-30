@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { LugaresService } from '../services/lugares.service';
 import { ActivatedRoute } from '@angular/router';
+// tslint:disable-next-line:import-blacklist
+import { Observable } from 'rxjs';
+// tslint:disable-next-line:import-blacklist
+import 'rxjs/Rx';
+import { FormControl } from '@angular/forms';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-crear',
@@ -14,7 +20,7 @@ export class CrearComponent implements OnInit {
       {name: 'Albania', code: 'AL'},
       {name: 'Algeria', code: 'DZ'},
       {name: 'American Samoa', code: 'AS'},
-      {name: 'AndorrA', code: 'AD'},
+      {name: 'Andorra', code: 'AD'},
       {name: 'Angola', code: 'AO'},
       {name: 'Anguilla', code: 'AI'},
       {name: 'Antarctica', code: 'AQ'},
@@ -150,7 +156,7 @@ export class CrearComponent implements OnInit {
       {name: 'Mauritania', code: 'MR'},
       {name: 'Mauritius', code: 'MU'},
       {name: 'Mayotte', code: 'YT'},
-      {name: 'Mexico', code: 'MX'},
+      {name: 'México', code: 'MX'},
       {name: 'Micronesia, Federated States of', code: 'FM'},
       {name: 'Moldova, Republic of', code: 'MD'},
       {name: 'Monaco', code: 'MC'},
@@ -257,9 +263,13 @@ export class CrearComponent implements OnInit {
   lugar: any = {};
   id: any = null;
 
+  results$: Observable<any>;
+  public searchField: FormControl;
+
   constructor(
     private lugaresService: LugaresService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private http: Http,
   ) {
     this.id = this.route.snapshot.params['id'];
     console.log(this.id);
@@ -271,25 +281,41 @@ export class CrearComponent implements OnInit {
           this.lugar = lugar;
         });
     }
+    const URL = 'https://maps.google.com/maps/api/geocode/json';
+    this.searchField = new FormControl();
+    this.results$ = this.searchField.valueChanges
+    .debounceTime(500)
+    .switchMap(query => this.http.get(`${URL}?address=${query}`))
+    .map(response => response.json())
+    .map(response => response.results);
   }
 
   guardarLugar() {
     const direccion =
       this.lugar.calle + ',' + this.lugar.ciudad + ',' + this.lugar.pais;
-    this.lugaresService.obtenerGeoData(direccion).subscribe(result => {
-      this.lugar.lat = result.json().results[0].geometry.location.lat;
-      this.lugar.lng = result.json().results[0].geometry.location.lng;
+      this.lugaresService.obtenerGeoData(direccion).subscribe(result => {
+        this.lugar.lat = result.json().results[0].geometry.location.lat;
+        this.lugar.lng = result.json().results[0].geometry.location.lng;
 
-      if (this.id !== 'new') {
-        this.lugaresService.editarLugar(this.lugar);
-        alert('Negocio editado con éxito');
-      } else {
-        this.lugar.id = Date.now();
-        this.lugaresService.guardarLugar(this.lugar);
-        alert('Negocio guardado con éxito');
-      }
-      this.lugar = {};
-    });
+        if (this.id !== 'new') {
+          this.lugaresService.editarLugar(this.lugar);
+          alert('Negocio editado con éxito');
+        } else {
+          this.lugar.id = Date.now();
+          this.lugaresService.guardarLugar(this.lugar);
+          alert('Negocio guardado con éxito');
+        }
+        this.lugar = {};
+      });
+  }
+
+  getAddress(result) {
+    this.lugar.calle = result.address_components[1].long_name + ' ' + result.address_components[0].long_name;
+    this.lugar.ciudad = result.address_components[4].long_name;
+    this.lugar.pais = result.address_components[5].short_name;
+    this.lugar.lat = result.geometry.location.lat;
+    this.lugar.lng = result.geometry.location.lng;
+    this.lugar.nombre = this.searchField.value;
   }
 
   ngOnInit() {}

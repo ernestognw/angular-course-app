@@ -15,14 +15,19 @@
           <a class="nav-link" routerLink="/contacto" routerLinkActive="active">Contacto</a>
         </li>
       </ul>
+
       <ul class="navbar-nav justify-content-end" *ngIf="!loggedIn">
-          <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" routerLink="/login">Login</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-              <a class="nav-link" routerLink="/registro">Registro</a>
-          </li>
-        </ul>
+          <button class="mr-3 btn btn-outline-light" routerLink="/login">Login</button>
+          <button class="mr-3 btn btn-outline-info" routerLink="/registro">Registro</button>
+      </ul>
+      <ul class="navbar-nav justify-content-end" *ngIf="loggedIn">
+            <span *ngIf="currentUser.displayName" class="navbar-text mr-3"><small>Bienvenido {{ currentUser.displayName }}</small></span>
+            <span *ngIf="!currentUser.displayName" class="navbar-text mr-3"><small>Bienvenido {{ currentUser.email }}</small></span>
+            <div *ngIf="currentUser.photoURL" class="mr-3 header-avatar">
+                <img src="{{ currentUser.photoURL }}" alt="Profile-Photo">
+            </div>
+            <button class="mr-3 btn btn-info" (click)="logout()">Logout</button>
+      </ul>
     </div>
   </div>
 

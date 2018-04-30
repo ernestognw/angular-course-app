@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { AppResaltarDirective } from './Directives/resaltar.directive';
 import { AppContarClicksDirective } from './Directives/contar-clicks.directive';
@@ -31,7 +31,7 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'contacto', component: ContactoComponent},
   {path: 'registro', component: RegistroComponent},
-  {path: 'crear/:id', component: CrearComponent, canActivate: [MyGuardService]},
+  {path: 'crear/:id', component: CrearComponent},
 
 ];
 
@@ -59,6 +59,7 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
       FormsModule,
+      ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCn0eygIajJOozSgy6ij5I7p4Zi4fkxrek'
     }),

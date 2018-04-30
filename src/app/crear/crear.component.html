@@ -6,64 +6,97 @@
 </nav>
 
 <div class="container">
-	<div class="row">
-		<div class="col-md-6"></div>
-		<div class="col-md-6">
-
-			<div class="card border-info mb-3">
-			  <div class="card-header"><h4>Registra un nuevo negocio</h4></div>
-			  <div class="card-body text-info">
-			  	<h5>Datos Generales</h5>
-			  	<hr />
-			    <strong class="card-title">Nombre</strong>
-				<input type="text" class="form-control" [(ngModel)]="lugar.nombre">
-				<hr />
-				<strong class="card-title">Distancia</strong>
-				<div class="input-group mb-3">
-					<input type="number" class="form-control" [(ngModel)]="lugar.distancia">
-					<div class="input-group-append">
-					  <span class="input-group-text">kms</span>
-					</div>
-				</div>
-				<hr />
-				<strong class="card-title">Cercanía</strong>
-				<select class="custom-select" id="inputGroupSelect01" [(ngModel)]="lugar.cercania">
-				  <option selected>Seleccionar</option>
-				  <option value="1">Cerca</option>
-				  <option value="2">Lejos</option>
-				  <option value="3">Muy lejos</option>
-				</select>
-				<hr />
-				<strong class="card-title">Descripción</strong>
-				<textarea class="form-control" [(ngModel)]="lugar.descripcion"></textarea>
-				<hr />
-				<strong class="card-title">Plan</strong>
-				<select class="custom-select" id="inputGroupSelect01" [(ngModel)]="lugar.plan">
-				  <option value="pagado">Pagado</option>
-				  <option value="gratuito">Gratuito</option>
-				</select>
-				<hr />
-				<h5>Datos de Ubicación</h5>
-				<hr />
-				<strong class="card-title">Calle y número</strong>
-				<input type="text" class="form-control" [(ngModel)]="lugar.calle">
-				<hr />
-				<strong class="card-title">País</strong>
-				<select class="custom-select" id="inputGroupSelect01" [(ngModel)]="lugar.pais">
-				  <option value="{{ ubicacion.code }}" *ngFor="let ubicacion of ubicaciones">{{ ubicacion.name }}</option>
-				</select>
-        <hr />
-        <strong class="card-title">Ciudad</strong>
-        <input type="text" class="form-control" [(ngModel)]="lugar.ciudad">
-				<hr />
-				<div class="row justify-content-end">
-					<button type="button" class="btn btn-info" (click)="guardarLugar()">Enviar</button>
-					<button type="button" class="btn btn-light" routerLink="/lugares">Cancelar</button>
-				</div>
-			  </div>
-			</div>
-
-		</div>
-	</div>
+  <div class="card border-info mb-3">
+    <div class="card-header">
+      <h4>Registra un nuevo negocio</h4>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card-body text-info">
+          <form>
+            <h5>Buscar Dirección</h5>
+            <input [formControl]="searchField" class="form-control" placeholder="Nombre">
+          </form>
+          <ul class="list-group">
+            <li (click)="getAddress(result)" class="list-group-item typeahead" *ngFor="let result of results$ | async">{{ result.formatted_address }}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <agm-map [latitude]="lugar.lat" [longitude]="lugar.lng">
+          <agm-marker [latitude]="lugar.lat" [longitude]="lugar.lng"></agm-marker>
+        </agm-map>
+      </div>
+    </div>
+    <hr />
+    <div class="card-body text-info">
+      <div class="row">
+        <div class="col-md-6">
+          <h5>Datos Generales</h5>
+          <hr />
+          <div class="form-group">
+              <strong class="card-title">Nombre</strong>
+              <input type="text" class="form-control" [(ngModel)]="lugar.nombre" placeholder="Nombre">
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <strong class="card-title">Distancia</strong>
+              <div class="input-group">
+                <input type="number" class="form-control" [(ngModel)]="lugar.distancia">
+                <div class="input-group-append">
+                  <span class="input-group-text">kms</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <strong class="card-title">Cercanía</strong>
+              <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="lugar.cercania">
+                <option value="1">Cerca</option>
+                <option value="2">Lejos</option>
+                <option value="3">Muy lejos</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-8">
+              <strong class="card-title">Descripción</strong>
+              <textarea class="form-control" [(ngModel)]="lugar.descripcion" placeholder="Descripción"></textarea>
+            </div>
+            <div class="form-group col-md-4">
+              <strong class="card-title">Plan</strong>
+              <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="lugar.plan">
+                <option value="pagado">Pagado</option>
+                <option value="gratuito">Gratuito</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h5>Datos de Ubicación</h5>
+          <hr />
+          <div class="form-group">
+            <strong class="card-title">Calle y número</strong>
+            <input type="text" class="form-control" [(ngModel)]="lugar.calle" placeholder="Calle y número">
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <strong class="card-title">País</strong>
+              <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="lugar.pais">
+                <option value="{{ ubicacion.code }}" *ngFor="let ubicacion of ubicaciones">{{ ubicacion.name }}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <strong class="card-title">Ciudad</strong>
+              <input type="text" class="form-control" [(ngModel)]="lugar.ciudad" placeholder="Ciudad">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-end">
+        <button type="button" class="btn btn-lg btn-info ml-3" (click)="guardarLugar()">Enviar</button>
+        <button type="button" class="btn btn-lg btn-light ml-3" routerLink="/lugares">Cancelar</button>
+      </div>
+    </div>
+  </div>
 </div>
 

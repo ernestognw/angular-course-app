@@ -9,14 +9,14 @@ import { LugaresService } from '../services/lugares.service';
 })
 
 export class DetalleComponent {
-	id = null;
-	lugar:any = {};
-	constructor(private route: ActivatedRoute, private lugaresService: LugaresService){
-		console.log(this.route.snapshot.params['id']);
-		this.id = this.route.snapshot.params['id'];
-		this.lugar = this.lugaresService.buscarLugar(this.id)
-	  	.valueChanges().subscribe(lugar => {
-	    	this.lugar = lugar;
-		});
-	}
+  id = null;
+  lugar: any = {};
+  constructor(private route: ActivatedRoute, private lugaresService: LugaresService) {
+    console.log(this.route.snapshot.params['id']);
+    this.id = this.route.snapshot.params['id'];
+    this.lugar = this.lugaresService.buscarLugar(this.id)
+      .valueChanges().subscribe(lugar => {
+        this.lugar = lugar;
+    });
+  }
 }

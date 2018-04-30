@@ -40,6 +40,7 @@ export class AutorizacionService {
       .then((response) => {
         alert('Usuario registrado con éxito!');
         console.log(response);
+        this.router.navigate(['lugares']);
       })
       .catch((error) => {
         alert('Un error ha ocurrido');
@@ -51,4 +52,13 @@ export class AutorizacionService {
     return this.angularFireAuth.authState;
   }
 
+  public logout() {
+    this.angularFireAuth.auth.signOut();
+    alert('Sesión cerrada');
+    this.router.navigate(['lugares']);
+  }
+
+  public getUserData() {
+    return this.angularFireAuth.auth.currentUser;
+  }
 }

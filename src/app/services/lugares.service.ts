@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Http, Headers } from '@angular/http';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class LugaresService {
@@ -80,7 +81,7 @@ export class LugaresService {
     }
   ];
 
-  constructor(private afDB: AngularFireDatabase, private http: Http) {}
+  constructor(private afDB: AngularFireDatabase, private http: Http, private router: Router) {}
   public getLugares() {
     return this.afDB.list('lugares/');
     // return this.http.get(this.API_ENDPOINT+'/lugares.json');
@@ -90,11 +91,13 @@ export class LugaresService {
   }
   public guardarLugar(lugar) {
     this.afDB.database.ref('lugares/' + lugar.id).set(lugar);
+    this.router.navigate(['detalle/' + lugar.id]);
     // const headers = new Headers({'Content-Type':'application/json'});
     // return this.http.post(this.API_ENDPOINT+'/lugares.json', lugar, {headers:headers}).subscribe();
   }
   public editarLugar(lugar) {
     this.afDB.database.ref('lugares/' + lugar.id).set(lugar);
+    this.router.navigate(['detalle/' + lugar.id]);
   }
   public obtenerGeoData(direccion) {
     // http://http://maps.google.com/maps/api/geocode/json?address=78-43+diagonal+70f,+Bogota,Colombia
