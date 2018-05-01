@@ -31,7 +31,7 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'contacto', component: ContactoComponent},
   {path: 'registro', component: RegistroComponent},
-  {path: 'crear/:id', component: CrearComponent},
+  {path: 'crear/:id', component: CrearComponent, canActivate: ['MyGuard']},
 
 ];
 

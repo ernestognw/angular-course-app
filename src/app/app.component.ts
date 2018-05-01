@@ -15,6 +15,7 @@ export class AppComponent {
       .subscribe((result) => {
         if (result && result.uid) {
           this.loggedIn = true;
+          this.autorizacionService.killed = false;
           this.currentUser = autorizacionService.getUserData();
         } else {
           this.loggedIn = false;
@@ -25,5 +26,8 @@ export class AppComponent {
   }
   logout() {
     this.autorizacionService.logout();
+  }
+  killHeaderFooter() {
+    this.autorizacionService.killHeaderFooter();
   }
 }

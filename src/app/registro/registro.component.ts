@@ -16,4 +16,8 @@ export class RegistroComponent {
    registrar() {
     this.autorizacionService.registro(this.registro.email, this.registro.password);
    }
+
+   reviveHeaderFooter() {
+    this.autorizacionService.reviveHeaderFooter();
+  }
 }

@@ -6,6 +6,8 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class AutorizacionService {
 
+  killed = false;
+
   constructor(private angularFireAuth: AngularFireAuth, private router: Router) {
     this.isLogged();
   }
@@ -50,6 +52,13 @@ export class AutorizacionService {
 
   public isLogged() {
     return this.angularFireAuth.authState;
+  }
+
+  public killHeaderFooter() {
+    this.killed = true;
+  }
+  public reviveHeaderFooter() {
+    this.killed = false;
   }
 
   public logout() {

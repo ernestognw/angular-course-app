@@ -19,4 +19,8 @@ export class LoginComponent {
    facebookLogin() {
      this.autorizacionService.facebookLogin();
    }
+
+   reviveHeaderFooter() {
+     this.autorizacionService.reviveHeaderFooter();
+   }
 }
