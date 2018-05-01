@@ -1,14 +1,15 @@
-import { Directive, OnInit, ElementRef, Renderer2, Input } from '@angular/core'
+import { Directive, OnInit, ElementRef, Renderer2, Input } from '@angular/core';
 
 @Directive({ selector: '[appResaltar]' })
 
-export class AppResaltarDirective implements OnInit{
-	constructor(private elRef: ElementRef, private renderer: Renderer2){}
-	@Input('appResaltar') plan : string = '';
-	ngOnInit(){
-		if(this.plan == 'pagado'){
-			this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'yellow');
-			this.renderer.setStyle(this.elRef.nativeElement, 'font-weight', 'bold');
-		}
-	}
+export class AppResaltarDirective implements OnInit {
+  constructor(private elRef: ElementRef, private renderer: Renderer2) {}
+  // tslint:disable-next-line:no-input-rename
+  @Input('appResaltar') plan = '';
+  ngOnInit() {
+    if (this.plan === 'pagado') {
+      this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'yellow');
+      this.renderer.setStyle(this.elRef.nativeElement, 'font-weight', 'bold');
+    }
+  }
 }
