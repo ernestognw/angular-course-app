@@ -22,7 +22,7 @@ import { LinkifystrPipe } from './pipes/linkifystr.pipe';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { AutorizacionService } from './services/autorizacion.service';
-import { MyGuardService } from './services/my-guard.service';
+import { MyGuard } from './services/my-guard.service';
 
 const appRoutes: Routes = [
   {path: '', component: LugaresComponent},
@@ -31,8 +31,7 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'contacto', component: ContactoComponent},
   {path: 'registro', component: RegistroComponent},
-  {path: 'crear/:id', component: CrearComponent, canActivate: ['MyGuard']},
-
+  {path: 'crear/:id', component: CrearComponent, canActivate: [MyGuard]},
 ];
 
 export const firebaseConfig = {
@@ -71,7 +70,7 @@ export const firebaseConfig = {
     HttpModule,
     CollapseModule.forRoot(),
   ],
-  providers: [LugaresService, AutorizacionService, MyGuardService],
+  providers: [LugaresService, AutorizacionService, MyGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
